@@ -2,7 +2,6 @@ from django.conf import settings
 from django.core.validators import MinValueValidator
 from django.db import models
 
-from reckon.models import BaseModel
 from profiles.constants import (
     DEFAULT_CURRENCY,
     EMPLOYMENT_CHOICES,
@@ -11,6 +10,7 @@ from profiles.constants import (
     RISK_CHOICES,
     RISK_MEDIUM,
 )
+from reckon.models import BaseModel
 
 MONEY = {"max_digits": 14, "decimal_places": 2, "validators": [MinValueValidator(0)]}
 

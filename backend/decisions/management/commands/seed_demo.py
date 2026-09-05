@@ -15,9 +15,9 @@ from decisions.constants import (
 )
 from decisions.models import Challenge, Decision, Review
 from decisions.utils import build_challenge_payload, create_review_due_notification
-from reckon.ai import get_provider
 from notes.models import Note
 from profiles.models import Profile
+from reckon.ai import get_provider
 
 DEMO_EMAIL = "demo@reckon.local"
 DEMO_PASSWORD = "reckon123"

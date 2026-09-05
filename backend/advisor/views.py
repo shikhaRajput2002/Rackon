@@ -7,10 +7,10 @@ from advisor.errors import PROFILE_REQUIRED_FOR_MONEY
 from advisor.models import AdvisorMessage
 from advisor.serializers import AdvisorMessageSerializer, AskSerializer
 from advisor.utils import classify_topic, parse_amount
-from reckon.ai import get_provider
 from insights.utils import build_track_record
 from profiles.models import Profile
 from profiles.utils import assess_purchase, build_profile_context
+from reckon.ai import get_provider
 
 
 class AdvisorView(APIView):

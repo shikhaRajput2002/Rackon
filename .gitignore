@@ -1,11 +1,17 @@
+# python
 reckon_venv/
 __pycache__/
 *.pyc
 .env
 staticfiles/
+
+# node
 node_modules/
 frontend/dist/
+
+# docs are kept out of git on purpose
 docs/
 *.md
 !README.md
+
 .DS_Store

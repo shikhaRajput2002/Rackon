@@ -3,9 +3,9 @@ from typing import Dict
 
 from advisor.constants import CONFIDENCE_BY_STRAIN, TOPIC_MONEY, TOPIC_TRACK_RECORD
 from advisor.utils import build_suggested_title
-from reckon.ai.base import AIProvider
 from profiles.constants import STRAIN_COMFORTABLE, STRAIN_TIGHT
 from profiles.utils import format_amount
+from reckon.ai.base import AIProvider
 
 COUNTERARGUMENTS_BY_CATEGORY = {
     "CAREER": [

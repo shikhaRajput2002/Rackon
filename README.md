@@ -46,6 +46,29 @@ often you were right.
 
 ![Decisions](screenshots/05-decisions.png)
 
+## Project structure
+
+Two peers under one repo — the API and the client are separate applications that
+happen to live together, not one nested inside the other.
+
+```
+reckon/
+├── backend/            Django 5 + DRF
+│   ├── reckon/         project: settings, celery, ai/ providers
+│   ├── accounts/       auth
+│   ├── profiles/       personal + financial details, affordability maths
+│   ├── decisions/      the journal: decisions, challenges, reviews, tasks
+│   ├── advisor/        the assistant
+│   ├── insights/       calibration calculations (no models of its own)
+│   ├── notes/          notes
+│   ├── home/           the home screen aggregate
+│   └── manage.py
+├── frontend/           React + Vite + Tailwind
+│   └── src/            api.js, auth.jsx, components/, pages/
+├── screenshots/
+└── dev.sh              runs all four processes
+```
+
 ## Stack
 
 Django 5 + DRF + Postgres + Celery/Redis on the backend, React + Vite + Tailwind on the front.
@@ -57,17 +80,16 @@ Prerequisites: Python 3.12, Node 20+, PostgreSQL and Redis running locally.
 
 ```bash
 # One-time setup
+cd backend
 python3.12 -m venv reckon_venv
 ./reckon_venv/bin/pip install -r requirements.txt
 createdb reckon_dev            # or: psql -U postgres -c "CREATE DATABASE reckon_dev"
 ./reckon_venv/bin/python manage.py migrate
 ./reckon_venv/bin/python manage.py seed_demo
+cd ../frontend && npm install && cd ..
 
-# Backend (API + Celery worker + beat, all in one)
+# Then, from the repo root — API, Celery worker, Celery beat and the frontend
 ./dev.sh
-
-# Frontend, in a second terminal
-cd frontend && npm install && npm run dev
 ```
 
 Open http://localhost:5173 and sign in with **demo@reckon.local / reckon123**,
@@ -78,7 +100,7 @@ and every task runs inline instead.
 
 ## The AI is pluggable
 
-`reckon/ai/` defines one interface (`AIProvider`) with two implementations:
+`backend/reckon/ai/` defines one interface (`AIProvider`) with two implementations:
 
 - **`fake`** (default) — runs offline, needs no API key, costs nothing. Output is seeded from the decision's UUID, so it's deterministic and safe for tests and demos.
 - **`anthropic`** — the real thing, via the Claude API.
@@ -138,7 +160,7 @@ Errors come back in one shape everywhere:
 
 `POST /api/advisor/` classifies the question into one of three shapes:
 
-- **Money** — it parses an amount out of plain English (`"4.2 lakh"`, `"₹4,20,000"`, `"50k"`), then `profiles/utils.py` computes the EMI, what share of income that is, what paying cash does to the emergency fund, and how long saving up would take. **That arithmetic runs in Python and is handed to the AI provider**, so no model ever invents a figure. You can override the parsed amount if it guesses wrong.
+- **Money** — it parses an amount out of plain English (`"4.2 lakh"`, `"₹4,20,000"`, `"50k"`), then `backend/profiles/utils.py` computes the EMI, what share of income that is, what paying cash does to the emergency fund, and how long saving up would take. **That arithmetic runs in Python and is handed to the AI provider**, so no model ever invents a figure. You can override the parsed amount if it guesses wrong.
 - **Track record** — answered from the calibration numbers in `insights/`.
 - **Everything else** — the questions that make a vague plan falsifiable.
 
