@@ -24,6 +24,28 @@ often you were right.
 5. **Score it.** What happened, and were you right?
 6. **See the pattern.** A calibration chart of claimed confidence against actual hit rate, broken down by category — plus whether arguing with the AI actually made you better calibrated or merely less confident.
 
+## What it looks like
+
+**The front door asks a question before it asks for your password.** Drag the slider and it answers back — the same control you use on every decision inside.
+
+![Sign in](screenshots/01-login.png)
+
+**Home** — where you stand financially, a quote that changes daily, and notes.
+
+![Home](screenshots/02-home.png)
+
+**Ask** — the advisor on a real question. The EMI, what share of income it is, what paying cash does to the emergency fund, and how long saving up would take. Every figure here is computed in Python from the profile and handed to the model; none of it is generated text. It ends by offering to log the whole thing as a decision.
+
+![The advisor answering a purchase question](screenshots/03-advisor.png)
+
+**Insights** — claimed confidence against what actually happened. The demo account says 80–100% and is right 0% of the time in that bucket, which is the entire point of the app in one bar.
+
+![Calibration](screenshots/04-insights.png)
+
+**Decisions** — the journal. Each row shows the confidence that was locked in, and how far the challenge moved it.
+
+![Decisions](screenshots/05-decisions.png)
+
 ## Stack
 
 Django 5 + DRF + Postgres + Celery/Redis on the backend, React + Vite + Tailwind on the front.
