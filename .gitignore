@@ -1,0 +1,11 @@
+reckon_venv/
+__pycache__/
+*.pyc
+.env
+staticfiles/
+node_modules/
+frontend/dist/
+docs/
+*.md
+!README.md
+.DS_Store

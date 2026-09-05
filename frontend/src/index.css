@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0c0c0d;
+  --color-surface: #141416;
+  --color-raised: #1c1c1f;
+  --color-line: #2a2a2e;
+  --color-mute: #8a8a93;
+  --color-soft: #b8b8c0;
+  --color-paper: #ededf0;
+  --color-accent: #d9a441;
+  --color-good: #4ea87a;
+  --color-bad: #cf5c5c;
+  --color-partial: #c79a4a;
+}
+
+html {
+  background: var(--color-ink);
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.serif {
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--color-line);
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  border: 3px solid var(--color-ink);
+  cursor: grab;
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+input[type="range"]::-webkit-slider-thumb:active {
+  cursor: grabbing;
+}
