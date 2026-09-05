@@ -90,13 +90,17 @@ cd ../frontend && npm install && cd ..
 
 # Then, from the repo root — API, Celery worker, Celery beat and the frontend
 ./dev.sh
+
+# Short on memory? Two processes instead of four, tasks run inline
+./dev.sh light
 ```
 
 Open http://localhost:5173 and sign in with **demo@reckon.local / reckon123**,
 or register a fresh account.
 
-Prefer not to run a Celery worker? Set `CELERY_TASK_ALWAYS_EAGER=True` in `backend/.env`
-and every task runs inline instead.
+Prefer not to run a Celery worker? `./dev.sh light` sets `CELERY_TASK_ALWAYS_EAGER=True`
+for you, so tasks execute inside the request and no worker, beat or Redis is needed.
+Handy on a laptop with 8&nbsp;GB of RAM, where four Python processes plus Vite is a squeeze.
 
 ## The AI is pluggable
 
