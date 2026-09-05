@@ -4,6 +4,7 @@ __pycache__/
 *.pyc
 .env
 staticfiles/
+celerybeat-schedule*
 
 # node
 node_modules/

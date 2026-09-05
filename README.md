@@ -95,7 +95,7 @@ cd ../frontend && npm install && cd ..
 Open http://localhost:5173 and sign in with **demo@reckon.local / reckon123**,
 or register a fresh account.
 
-Prefer not to run a Celery worker? Set `CELERY_TASK_ALWAYS_EAGER=True` in `.env`
+Prefer not to run a Celery worker? Set `CELERY_TASK_ALWAYS_EAGER=True` in `backend/.env`
 and every task runs inline instead.
 
 ## The AI is pluggable
